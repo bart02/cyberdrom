@@ -1,0 +1,5 @@
+START d1_x d1_y d2_x d2_y d3_x d3_y d4_x d4_y
+R obj1_x obj1_y obj2_x obj2_y obj3_x obj3_y obj4_x obj4_y end_x end_y
+Y obj1_x obj1_y obj2_x obj2_y obj3_x obj3_y obj4_x obj4_y end_x end_y
+G obj1_x obj1_y obj2_x obj2_y obj3_x obj3_y obj4_x obj4_y end_x end_y
+B obj1_x obj1_y obj2_x obj2_y obj3_x obj3_y obj4_x obj4_y end_x end_y
