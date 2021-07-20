@@ -44,13 +44,9 @@ local colors = {
 }
 
 local points = {
-    {0,1,0.8},
-    {1,1,0.8},
-    {1,-1,0.8},
-    {-1,-1,0.8},
-    {-1,1,0.8},
-    {0,1,0.8},
-    {0,0,0.8}
+    {0,0,0.5},
+    {0,1,0.5},
+    {0,0,0.5}
 }
 
 local curPoint = 1
@@ -70,7 +66,7 @@ local function nextPoint()
                 ap.push(Ev.MCE_LANDING) -- отправка команды автопилоту на посадку
             end)
                 toggleMagnet()
-                         
+
         else
             changeColor(colors[6]) -- смена цвета светодиодов на белый
             Timer.callLater(2, function ()
