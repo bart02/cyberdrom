@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cyberdrom/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/cyberdrom/static/js/main.c4f5a672.chunk.js",
-    "main.js.map": "/cyberdrom/static/js/main.c4f5a672.chunk.js.map",
+    "main.js": "/cyberdrom/static/js/main.c246aa36.chunk.js",
+    "main.js.map": "/cyberdrom/static/js/main.c246aa36.chunk.js.map",
     "runtime-main.js": "/cyberdrom/static/js/runtime-main.1d02da2b.js",
     "runtime-main.js.map": "/cyberdrom/static/js/runtime-main.1d02da2b.js.map",
     "static/js/2.7f4ff173.chunk.js": "/cyberdrom/static/js/2.7f4ff173.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.1d02da2b.js",
     "static/js/2.7f4ff173.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.c4f5a672.chunk.js"
+    "static/js/main.c246aa36.chunk.js"
   ]
 }
