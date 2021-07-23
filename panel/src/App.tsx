@@ -29,17 +29,21 @@ const App = () => {
   const [code, setCode] = React.useState('');
 
   const addPoint = (x: number, y: number) => {
-    const cpaths = [...paths];
-    cpaths[curPath] = { ...cpaths[curPath], points: [...cpaths[curPath].points, { x, y }] };
+    if (!Number.isNaN(x) && !Number.isNaN(y)) {
+      const cpaths = [...paths];
+      cpaths[curPath] = { ...cpaths[curPath], points: [...cpaths[curPath].points, { x, y }] };
 
-    setPaths(cpaths);
+      setPaths(cpaths);
+    }
   };
 
   const setEndpoint = (x: number, y: number) => {
-    const cpaths = [...paths];
-    cpaths[curPath] = { ...cpaths[curPath], endPoint: { x, y } };
+    if (!Number.isNaN(x) && !Number.isNaN(y)) {
+      const cpaths = [...paths];
+      cpaths[curPath] = { ...cpaths[curPath], endPoint: { x, y } };
 
-    setPaths(cpaths);
+      setPaths(cpaths);
+    }
   };
 
   const addPointEvent = (e: Konva.KonvaEventObject<MouseEvent>) => {
