@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  Stage, Layer, Star, Line,
+  Stage, Layer, Line, Circle,
 } from 'react-konva';
 import Konva from 'konva';
+import Net from './Net';
 
 export interface Point {
   x: number,
@@ -12,7 +13,8 @@ export interface Point {
 export interface Path {
   name: string,
   color: string,
-  points: Point[]
+  points: Point[],
+  endPoint?: Point
 }
 
 const App = () => {
@@ -24,6 +26,7 @@ const App = () => {
   const [curPath, setCurPath] = React.useState(0);
   const [formX, setFormX] = React.useState('');
   const [formY, setFormY] = React.useState('');
+  const [code, setCode] = React.useState('');
 
   const addPoint = (x: number, y: number) => {
     const cpaths = [...paths];
@@ -32,24 +35,47 @@ const App = () => {
     setPaths(cpaths);
   };
 
-  const addPointEvent = (e: Konva.KonvaEventObject<MouseEvent>) => {
-    addPoint(e.evt.x / 100, e.evt.y / 100);
+  const setEndpoint = (x: number, y: number) => {
+    const cpaths = [...paths];
+    cpaths[curPath] = { ...cpaths[curPath], endPoint: { x, y } };
+
+    setPaths(cpaths);
   };
 
-  const download = () => {
+  const addPointEvent = (e: Konva.KonvaEventObject<MouseEvent>) => {
+    // @ts-ignore
+    addPoint(e.evt.layerX / 100, e.evt.layerY / 100);
+  };
+
+  useEffect(() => {
     // eslint-disable-next-line array-callback-return
-    paths.map((path) => {
-      const kjfdsbgvhrjfdksl = path.points.map((point) => (
-        `{${point.x}, ${point.y}, 2.0}`
-      )).join('\n');
-      console.log(kjfdsbgvhrjfdksl);
-    });
+    setCode(paths.map((path) => {
+      // eslint-disable-next-line max-len
+      const coordsArray = (path.endPoint !== undefined ? [...path.points, path.endPoint] : path.points)
+        .map((point) => (
+          `{${point.x}, ${point.y}, 2.0},`
+        )).join('\n');
+
+      return `code
+${coordsArray}
+codeend`;
+    }).join('\n\n\n\n'));
+  }, [paths]);
+
+  const delPoint = () => {
+    const cpaths = [...paths];
+    cpaths[curPath] = {
+      ...cpaths[curPath],
+      points: [...cpaths[curPath].points.slice(0, cpaths[curPath].points.length - 1)],
+    };
+
+    setPaths(cpaths);
   };
 
   return (
     <>
       <div style={{ position: 'absolute', right: 0, zIndex: 10000000 }}>
-        <select value={curPath} onChange={(e) => { setCurPath(parseInt(e.target.value, 10)); }}>
+        <select value={curPath} onChange={(e) => { setCurPath(parseFloat(e.target.value)); }}>
           {paths.map((path, i) => (
             // eslint-disable-next-line react/no-array-index-key
             <option key={i} value={i}>{path.name}</option>
@@ -60,34 +86,37 @@ const App = () => {
         <br />
         <input type="text" value={formY} onChange={((e) => { setFormY(e.target.value); })} />
         <br />
-        <button type="button" onClick={() => addPoint(parseInt(formX, 10), parseInt(formY, 10))}>add</button>
+        <button type="button" onClick={() => addPoint(parseFloat(formX), parseFloat(formY))}>add</button>
+        <button type="button" onClick={() => setEndpoint(parseFloat(formX), parseFloat(formY))}>end point</button>
+        <button type="button" onClick={() => { delPoint(); }}>delete</button>
         <br />
-        <button type="button" onClick={() => { download(); }}>download</button>
+        <textarea value={code} />
       </div>
-      <Stage width={1000} height={1000} scale={{ x: 100, y: 100 }} onClick={addPointEvent}>
+
+      <Stage style={{ margin: '10px' }} width={1000} height={1000} scale={{ x: 100, y: 100 }} onClick={addPointEvent}>
+        <Net width={1} qty={10} />
         <Layer>
           {paths.map((path) => (
-            path.points.map((star, i) => (
-              <>
-                <Star
-                  key={i.toString()}
-                  id={i.toString()}
-                  x={star.x}
-                  y={star.y}
-                  numPoints={5}
-                  innerRadius={0.1}
-                  outerRadius={0.2}
-                  fill={path.color}
-                />
-                {i > 0 && (
-                <Line
-                  points={[path.points[i - 1].x, path.points[i - 1].y, star.x, star.y]}
-                  strokeWidth={0.05}
-                  stroke={path.color}
-                />
-                )}
-              </>
-            ))
+            (path.endPoint !== undefined ? [...path.points, path.endPoint] : path.points)
+              .map((star, i) => (
+                <>
+                  <Circle
+                    key={i.toString()}
+                    id={i.toString()}
+                    x={star.x}
+                    y={star.y}
+                    radius={0.1}
+                    fill={path.color}
+                  />
+                  {i > 0 && (
+                    <Line
+                      points={[path.points[i - 1].x, path.points[i - 1].y, star.x, star.y]}
+                      strokeWidth={0.05}
+                      stroke={path.color}
+                    />
+                  )}
+                </>
+              ))
           ))}
         </Layer>
       </Stage>
