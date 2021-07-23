@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/cyberdrom/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/cyberdrom/static/js/main.c246aa36.chunk.js",
-    "main.js.map": "/cyberdrom/static/js/main.c246aa36.chunk.js.map",
+    "main.js": "/cyberdrom/static/js/main.62995047.chunk.js",
+    "main.js.map": "/cyberdrom/static/js/main.62995047.chunk.js.map",
     "runtime-main.js": "/cyberdrom/static/js/runtime-main.1d02da2b.js",
     "runtime-main.js.map": "/cyberdrom/static/js/runtime-main.1d02da2b.js.map",
-    "static/js/2.7f4ff173.chunk.js": "/cyberdrom/static/js/2.7f4ff173.chunk.js",
-    "static/js/2.7f4ff173.chunk.js.map": "/cyberdrom/static/js/2.7f4ff173.chunk.js.map",
+    "static/js/2.d4239237.chunk.js": "/cyberdrom/static/js/2.d4239237.chunk.js",
+    "static/js/2.d4239237.chunk.js.map": "/cyberdrom/static/js/2.d4239237.chunk.js.map",
     "index.html": "/cyberdrom/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/cyberdrom/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.7f4ff173.chunk.js.LICENSE.txt": "/cyberdrom/static/js/2.7f4ff173.chunk.js.LICENSE.txt"
+    "static/js/2.d4239237.chunk.js.LICENSE.txt": "/cyberdrom/static/js/2.d4239237.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1d02da2b.js",
-    "static/js/2.7f4ff173.chunk.js",
+    "static/js/2.d4239237.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.c246aa36.chunk.js"
+    "static/js/main.62995047.chunk.js"
   ]
 }
