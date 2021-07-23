@@ -27,6 +27,7 @@ const App = () => {
   const [formX, setFormX] = React.useState('');
   const [formY, setFormY] = React.useState('');
   const [code, setCode] = React.useState('');
+  const [height, setHeight] = React.useState('');
 
   const addPoint = (x: number, y: number) => {
     if (!Number.isNaN(x) && !Number.isNaN(y)) {
@@ -57,14 +58,14 @@ const App = () => {
       // eslint-disable-next-line max-len
       const coordsArray = (path.endPoint !== undefined ? [...path.points, path.endPoint] : path.points)
         .map((point) => (
-          `{${point.x}, ${point.y}, 2.0},`
-        )).join('\n');
+          `{${point.x}, ${point.y}, ${height}}`
+        )).join(',\n');
 
       return `code
 ${coordsArray}
 codeend`;
     }).join('\n\n\n\n'));
-  }, [paths]);
+  }, [height, paths]);
 
   const delPoint = () => {
     const cpaths = [...paths];
@@ -93,6 +94,8 @@ codeend`;
         <button type="button" onClick={() => addPoint(parseFloat(formX), parseFloat(formY))}>add</button>
         <button type="button" onClick={() => setEndpoint(parseFloat(formX), parseFloat(formY))}>end point</button>
         <button type="button" onClick={() => { delPoint(); }}>delete</button>
+        <br />
+        <input type="text" value={height} onChange={((e) => { setHeight(e.target.value); })} />
         <br />
         <textarea value={code} />
       </div>
